@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description" content="Painel de leitura do RUF 2026 para os cursos da Unicatólica.">
+  <title>Painel RUF 2026 · Unicatólica</title>
+  <style>
+    :root {
+      --navy: #102a43;
+      --navy-2: #183b56;
+      --ink: #172b3a;
+      --muted: #62798b;
+      --line: #d9e2e8;
+      --paper: #f7f6f1;
+      --white: #ffffff;
+      --cream: #f1ecdf;
+      --teal: #087f8c;
+      --teal-soft: #dff1f0;
+      --orange: #ee7c45;
+      --orange-soft: #fff0e9;
+      --yellow: #f3c969;
+      --green: #2f8765;
+      --red: #b94b55;
+      --shadow: 0 18px 50px rgba(16,42,67,.08);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.45; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    .shell { max-width: 1440px; margin: 0 auto; padding: 28px 28px 72px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom: 34px; }
+    .brand { display:flex; align-items:center; gap:13px; color:var(--navy); }
+    .mark { width:42px; height:42px; border-radius: 14px 14px 14px 5px; display:grid; place-items:center; background:var(--navy); color:#fff; font-weight:900; letter-spacing:-.08em; box-shadow: 6px 6px 0 var(--orange); }
+    .brand strong { display:block; font-size: 1.02rem; letter-spacing:-.03em; }
+    .brand span { display:block; color:var(--muted); font-size:.75rem; margin-top:2px; }
+    .top-actions { display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+    .button { border:1px solid var(--line); background:#fff; color:var(--navy); padding:10px 14px; border-radius: 12px; font-weight:750; transition:.2s ease; }
+    .button:hover { transform: translateY(-1px); border-color:#b9cbd5; box-shadow: 0 5px 16px rgba(16,42,67,.08); }
+    .button.primary { color:#fff; background:var(--orange); border-color:var(--orange); }
+    .hero { display:grid; grid-template-columns: minmax(0, 1.25fr) minmax(310px, .75fr); gap:22px; margin-bottom:22px; }
+    .hero-main { position:relative; overflow:hidden; min-height:290px; padding:38px; border-radius:28px; background:var(--navy); color:#fff; box-shadow:var(--shadow); }
+    .hero-main:after { content:""; position:absolute; width:340px; height:340px; right:-100px; bottom:-150px; border-radius:50%; border:44px solid rgba(238,124,69,.26); box-shadow: 0 0 0 18px rgba(238,124,69,.1); }
+    .eyebrow { color:var(--yellow); text-transform:uppercase; font-weight:850; letter-spacing:.12em; font-size:.72rem; }
+    h1, h2, h3, p { margin-top:0; }
+    h1 { max-width: 820px; font-size: clamp(2.1rem, 4vw, 4.35rem); letter-spacing:-.075em; line-height:.98; margin:17px 0 18px; position:relative; z-index:1; }
+    .hero-main p { max-width:700px; color:#c9d7e1; font-size:1.02rem; position:relative; z-index:1; margin-bottom:0; }
+    .hero-note { background:var(--cream); border-radius:28px; padding:28px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:var(--shadow); }
+    .hero-note .big { color:var(--navy); font-size:3.25rem; line-height:1; font-weight:900; letter-spacing:-.08em; }
+    .hero-note p { color:var(--muted); margin:8px 0 0; }
+    .source-link { display:inline-flex; width:fit-content; margin-top:24px; color:var(--navy); font-size:.88rem; font-weight:800; text-decoration:none; border-bottom:2px solid var(--orange); }
+    .toolbar { position:sticky; top:12px; z-index:5; display:grid; grid-template-columns: 1.25fr 1fr 1fr 1fr 1fr; gap:10px; padding:13px; margin-bottom:22px; background:rgba(255,255,255,.92); backdrop-filter: blur(14px); border:1px solid rgba(217,226,232,.92); border-radius:16px; box-shadow: 0 12px 30px rgba(16,42,67,.08); }
+    .field label { display:block; color:var(--muted); font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; margin:0 0 5px 3px; }
+    .field input, .field select { width:100%; min-height:42px; border:1px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); padding:9px 11px; outline:none; }
+    .field input:focus, .field select:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(8,127,140,.13); }
+    .section { margin-top:34px; scroll-margin-top:92px; }
+    .section-head { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:14px; }
+    .section-head h2 { color:var(--navy); font-size:1.55rem; letter-spacing:-.05em; margin-bottom:4px; }
+    .section-head p { color:var(--muted); margin-bottom:0; }
+    .section-tools { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .segmented { display:inline-flex; padding:3px; background:var(--cream); border-radius:11px; }
+    .segmented button { border:0; background:transparent; color:var(--muted); border-radius:8px; padding:8px 11px; font-weight:800; font-size:.8rem; }
+    .segmented button.active { background:#fff; color:var(--navy); box-shadow:0 2px 8px rgba(16,42,67,.1); }
+    .stats { display:grid; grid-template-columns: repeat(4, 1fr); gap:13px; }
+    .stat { background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:0 7px 22px rgba(16,42,67,.04); min-height:124px; }
+    .stat .label { color:var(--muted); font-size:.75rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; }
+    .stat .value { display:block; color:var(--navy); font-size:2rem; font-weight:900; letter-spacing:-.07em; margin:10px 0 3px; }
+    .stat .detail { color:var(--muted); font-size:.82rem; }
+    .course-grid { display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap:13px; }
+    .mission-summary { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:13px; margin-bottom:13px; }
+    .mission-card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:17px 18px; box-shadow:0 7px 22px rgba(16,42,67,.04); }
+    .mission-card .label { color:var(--muted); font-size:.7rem; font-weight:850; text-transform:uppercase; letter-spacing:.08em; }
+    .mission-card .value { display:block; color:var(--navy); font-size:1.45rem; font-weight:900; letter-spacing:-.06em; margin-top:9px; }
+    .mission-card .detail { color:var(--muted); font-size:.78rem; }
+    .mission-badge { display:inline-flex; min-width:42px; justify-content:center; margin-right:7px; padding:4px 6px; border-radius:7px; color:#fff; font-size:.68rem; font-weight:900; letter-spacing:.04em; }
+    .mission-badge.unicatolica { background:var(--orange); }
+    .mission-badge.ficr { background:var(--teal); }
+    .mission-badge.unileste { background:#5d6bc1; }
+    .mission-badge.ucb { background:#8a5da8; }
+    .mission-long { color:var(--navy); font-weight:800; white-space:normal; }
+    .course-card { position:relative; min-height:205px; display:flex; flex-direction:column; justify-content:space-between; padding:18px; border:1px solid var(--line); border-radius:17px; background:#fff; transition:.2s ease; overflow:hidden; }
+    .course-card:hover { border-color:#b9cbd5; transform:translateY(-2px); box-shadow:0 12px 26px rgba(16,42,67,.08); }
+    .course-card.loaded { cursor:pointer; }
+    .course-card.loaded:before { content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background:var(--teal); }
+    .course-card.pending { background:transparent; border-style:dashed; }
+    .course-card.pending:before { content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background:#c4cdd3; }
+    .course-title { color:var(--navy); font-weight:900; letter-spacing:-.03em; font-size:1.03rem; padding-right:30px; }
+    .course-meta { color:var(--muted); font-size:.78rem; margin-top:4px; }
+    .rank { color:var(--navy); font-weight:900; font-size:2.35rem; letter-spacing:-.08em; line-height:1; margin-top:22px; }
+    .rank small { color:var(--muted); font-size:.75rem; letter-spacing:0; font-weight:700; }
+    .course-bottom { display:flex; justify-content:space-between; align-items:end; gap:10px; }
+    .mini-note { color:var(--muted); font-size:.75rem; line-height:1.25; }
+    .status { display:inline-flex; width:fit-content; align-items:center; gap:5px; padding:5px 8px; border-radius:999px; font-size:.68rem; font-weight:850; text-transform:uppercase; letter-spacing:.06em; }
+    .status.good { background:var(--teal-soft); color:var(--teal); }
+    .status.warn { background:var(--orange-soft); color:#b85f31; }
+    .status.muted { background:#edf1f3; color:var(--muted); }
+    .detail-grid { display:grid; grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr); gap:16px; }
+    .panel { border:1px solid var(--line); border-radius:18px; background:#fff; padding:22px; box-shadow:0 7px 22px rgba(16,42,67,.04); }
+    .panel.dark { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .panel h3 { color:var(--navy); font-size:1.1rem; letter-spacing:-.04em; margin-bottom:6px; }
+    .panel.dark h3 { color:#fff; }
+    .panel .sub { color:var(--muted); font-size:.82rem; margin-bottom:18px; }
+    .panel.dark .sub { color:#bdcbd5; }
+    .focus-rank { display:flex; align-items:baseline; gap:10px; margin:22px 0 9px; }
+    .focus-rank strong { font-size:4.4rem; line-height:.9; letter-spacing:-.11em; }
+    .focus-rank span { color:#b9cad5; font-weight:800; }
+    .focus-name { font-weight:850; color:#dfe9ef; }
+    .meter-list { display:grid; gap:12px; }
+    .meter-row { display:grid; grid-template-columns: 1.1fr 1fr auto; gap:10px; align-items:center; }
+    .meter-name { font-size:.8rem; font-weight:800; color:var(--ink); }
+    .meter-track { height:8px; border-radius:99px; background:#e9eff1; overflow:hidden; }
+    .meter-fill { height:100%; border-radius:inherit; background:linear-gradient(90deg, var(--teal), #56b9b7); }
+    .meter-value { color:var(--navy); font-size:.82rem; font-weight:900; white-space:nowrap; }
+    .meter-rank { color:var(--muted); font-size:.72rem; white-space:nowrap; }
+    .empty { color:var(--muted); font-size:.9rem; padding:18px 0 2px; }
+    .compare-card { padding:0; overflow:hidden; }
+    .compare-top { display:flex; justify-content:space-between; align-items:center; gap:14px; padding:18px 20px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+    .compare-top strong { color:var(--navy); letter-spacing:-.03em; }
+    .table-wrap { overflow:auto; }
+    table { width:100%; min-width:1060px; border-collapse:collapse; font-size:.82rem; }
+    th { padding:12px 14px; text-align:left; background:#f4f7f8; color:var(--muted); font-size:.67rem; text-transform:uppercase; letter-spacing:.07em; white-space:nowrap; }
+    td { padding:13px 14px; border-top:1px solid #edf1f2; white-space:nowrap; }
+    tbody tr:hover { background:#f8fbfb; }
+    tbody tr.target { background:var(--orange-soft); }
+    tbody tr.target td:first-child { box-shadow:inset 4px 0 0 var(--orange); }
+    .inst { white-space:normal; min-width:260px; color:var(--navy); font-weight:800; }
+    .muted { color:var(--muted); }
+    .num { font-variant-numeric:tabular-nums; font-weight:800; }
+    .pill { display:inline-flex; align-items:center; padding:4px 7px; border-radius:7px; background:#eef3f5; color:var(--muted); font-size:.7rem; font-weight:800; }
+    .pill.target { background:var(--orange); color:#fff; }
+    .info-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:13px; }
+    .info-card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:19px; }
+    .info-card h3 { color:var(--navy); font-size:.98rem; margin-bottom:7px; }
+    .info-card p { color:var(--muted); font-size:.84rem; margin-bottom:0; }
+    .import { display:flex; gap:13px; align-items:center; justify-content:space-between; background:var(--cream); border:1px dashed #c7bda6; border-radius:16px; padding:17px 18px; }
+    .import p { margin:0; color:#6d6759; font-size:.82rem; }
+    .import input { display:none; }
+    .footer { margin-top:38px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:.78rem; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .footer strong { color:var(--navy); }
+    .toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%, 20px); opacity:0; pointer-events:none; background:var(--navy); color:#fff; padding:12px 16px; border-radius:11px; font-size:.82rem; font-weight:700; box-shadow:0 10px 30px rgba(16,42,67,.25); transition:.25s ease; z-index:20; }
+    .toast.show { opacity:1; transform:translate(-50%, 0); }
+    .hidden { display:none !important; }
+    @media (max-width: 1100px) { .toolbar { grid-template-columns: repeat(3, 1fr); } .course-grid { grid-template-columns: repeat(3, 1fr); } .hero { grid-template-columns:1fr; } }
+    @media (max-width: 760px) { .shell { padding:18px 15px 50px; } .topbar { align-items:flex-start; flex-direction:column; } .top-actions { justify-content:flex-start; } .hero-main { padding:27px 23px; } .hero-note { min-height:180px; } h1 { font-size:2.55rem; } .toolbar { position:static; grid-template-columns:1fr 1fr; } .toolbar .field:first-child { grid-column:1 / -1; } .stats, .course-grid, .info-grid, .mission-summary { grid-template-columns:1fr 1fr; } .detail-grid { grid-template-columns:1fr; } .section-head { align-items:flex-start; flex-direction:column; } .meter-row { grid-template-columns:1fr auto; } .meter-track { grid-column:1 / -1; grid-row:2; } .meter-value { grid-column:2; grid-row:1; } .import { align-items:flex-start; flex-direction:column; } }
+    @media (max-width: 480px) { .toolbar { grid-template-columns:1fr; } .toolbar .field:first-child { grid-column:auto; } .stats, .course-grid, .info-grid, .mission-summary { grid-template-columns:1fr; } .top-actions { width:100%; } .top-actions .button { flex:1; } }
+    @media print { .topbar, .toolbar, .top-actions, .import, .footer .print-hide { display:none !important; } body { background:#fff; } .shell { max-width:none; padding:0; } .hero-main, .hero-note, .panel, .stat, .course-card { box-shadow:none; } .section { break-inside:avoid; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><div class="mark">UC</div><div><strong>Painel RUF · Unicatólica</strong><span>Leitura gerencial dos cursos · edição 2026</span></div></div>
+      <div class="top-actions"><button class="button" id="printBtn">Imprimir / PDF</button><button class="button primary" id="resetBtn">Limpar filtros</button></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-main"><div class="eyebrow">Ranking Universitário Folha · 2026</div><h1>Uma leitura mais clara da posição de cada curso.</h1><p>Compare a Unicatólica com FICR, Unileste e UCB, explore os indicadores disponíveis e identifique rapidamente onde há dados, lacunas e oportunidades de aprofundamento.</p></div>
+        <aside class="hero-note"><div><div class="big" id="loadedCount">8/15</div><p>cursos da Unicatólica com planilha anexada nesta versão.</p></div><a class="source-link" href="https://ruf.folha.uol.com.br/2026/ranking-de-cursos/direito/" target="_blank" rel="noopener">Abrir fonte oficial do RUF 2026 ↗</a></aside>
+      </section>
+
+      <section class="toolbar" aria-label="Filtros do painel">
+        <div class="field"><label for="courseSelect">Curso</label><select id="courseSelect"></select></div>
+        <div class="field"><label for="searchInput">Buscar instituição</label><input id="searchInput" type="search" placeholder="Ex.: Universidade Federal..."></div>
+        <div class="field"><label for="ufSelect">Estado</label><select id="ufSelect"><option value="all">Todos os estados</option></select></div>
+        <div class="field"><label for="typeSelect">Natureza</label><select id="typeSelect"><option value="all">Pública e privada</option><option>Federal</option><option>Estadual</option><option>Municipal</option><option>Privada</option></select></div>
+        <div class="field"><label for="positionSelect">Posição máxima</label><select id="positionSelect"><option value="all">Qualquer posição</option><option value="50">Até 50</option><option value="100">Até 100</option><option value="200">Até 200</option><option value="500">Até 500</option></select></div>
+      </section>
+
+      <section class="section" id="overviewSection">
+        <div class="section-head"><div><h2>Visão geral da Unicatólica</h2><p>Os cartões abaixo usam a posição geral do RUF quando a instituição foi localizada no CSV.</p></div><div class="section-tools"><div class="segmented"><button class="active" data-scope="target">Unicatólica</button><button data-scope="all">Todas as instituições</button></div></div></div>
+        <div class="stats" id="stats"></div>
+        <div class="course-grid" id="courseGrid" style="margin-top:13px"></div>
+      </section>
+
+      <section class="section" id="detailSection">
+        <div class="section-head"><div><h2 id="detailTitle">Detalhe do curso</h2><p id="detailSubtitle">Selecione um curso carregado para ver os indicadores.</p></div></div>
+        <div class="detail-grid">
+          <article class="panel dark" id="focusPanel"></article>
+          <article class="panel"><h3>Indicadores disponíveis</h3><p class="sub">As notas abaixo são apresentadas exatamente como aparecem na planilha. O painel não calcula uma nova nota geral.</p><div class="meter-list" id="meterList"></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="missionSection">
+        <div class="section-head"><div><h2>Unidades de missão lado a lado</h2><p id="missionSubtitle">Selecione um curso para comparar Unicatólica, FICR, Unileste e UCB.</p></div><div class="section-tools"><span class="pill">Comparação principal da reitoria</span></div></div>
+        <div class="mission-summary" id="missionSummary"></div>
+        <div class="panel compare-card"><div class="compare-top"><strong id="missionResultCount">Nenhum curso selecionado</strong><span class="muted" id="missionHint">“Não localizado” não significa posição zero.</span></div><div class="table-wrap"><table class="mission-table"><thead><tr><th>Unidade</th><th>Posição geral</th><th>Mercado</th><th>Ensino</th><th>Doutorado / mestrado</th><th>Concluintes</th><th>Dedicação</th><th>Docentes</th><th>OAB</th></tr></thead><tbody id="missionBody"></tbody></table></div></div>
+      </section>
+      <section class="section" id="compareSection">
+        <div class="section-head"><div><h2>Comparativo entre instituições</h2><p id="compareSubtitle">Filtre por estado, natureza, busca ou posição para encontrar referências.</p></div><div class="section-tools"><button class="button" id="downloadBtn">Baixar recorte CSV</button></div></div>
+        <div class="panel compare-card"><div class="compare-top"><strong id="resultCount">0 instituições</strong><span class="muted" id="resultHint">A Unicatólica fica destacada em laranja.</span></div><div class="table-wrap"><table><thead><tr><th>Instituição</th><th>UF</th><th>Natureza</th><th>Posição</th><th>Mercado</th><th>Ensino</th><th>Doutorado / mestrado</th><th>Concluintes</th><th>Dedicação</th><th>Docentes</th><th>OAB</th></tr></thead><tbody id="tableBody"></tbody></table></div></div>
+      </section>
+
+      <section class="section" id="dataSection">
+        <div class="section-head"><div><h2>Dados, metodologia e próximos arquivos</h2><p>O painel foi desenhado para crescer quando os demais CSVs forem anexados.</p></div></div>
+        <div class="info-grid">
+          <article class="info-card"><h3>Como ler a posição</h3><p>A posição é a colocação publicada na carreira. Faixas como “251-300” são mantidas como faixa e não são convertidas em um número inventado.</p></article>
+          <article class="info-card"><h3>O que o RUF avalia</h3><p>O RUF 2026 informa que o ranking de cursos combina os aspectos ensino e mercado. Direito tem também a nota da OAB. O Enade compõe parte do indicador de ensino.</p></article>
+          <article class="info-card"><h3>Unidades comparadas</h3><p>O comparativo principal usa os nomes oficiais da Unicatólica, FICR, Unileste e UCB listados pela <a href="https://www.ubec.edu.br/unidades-de-missao/" target="_blank" rel="noopener">UBEC</a>. Não há média artificial entre os indicadores.</p></article>
+        </div>
+        <div class="import" style="margin-top:13px"><p><strong>Adicionar CSV:</strong> escolha um arquivo no mesmo formato das planilhas originais. O curso é identificado pelo nome do arquivo; a importação vale apenas para esta sessão do navegador.</p><label class="button primary" for="fileInput">Importar CSV</label><input id="fileInput" type="file" accept=".csv,text/csv" multiple></div>
+      </section>
+    </main>
+
+    <footer class="footer"><div><strong>Fonte dos dados:</strong> CSVs fornecidos pelo usuário, extraídos do RUF 2026. <span id="generatedInfo"></span></div><div class="print-hide"><a href="https://ruf.folha.uol.com.br/2026/noticias/como-e-feito-o-ranking-de-cursos-do-ruf-2026.shtml" target="_blank" rel="noopener">Metodologia oficial ↗</a> · <span>painel independente, não oficial da Folha</span></div></footer>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const INITIAL = { target:'Centro Universitário Católica de Quixadá' };
+    const TARGET = INITIAL.target;
+    const state = { course: 'all', scope: 'target', search: '', uf: 'all', type: 'all', position: 'all', sort: 'position' };
+    let data = {};
+    let meta = [];
+    const labels = { m:'Mercado', e:'Qualidade de ensino', d:'Doutorado / mestrado', c:'Concluintes', q:'Dedicação docente', a:'Avaliação docente', o:'OAB' };
+    const MISSION_UNITS = [
+      { id:'unicatolica', short:'Unicatólica', label:'Centro Universitário Católica de Quixadá', aliases:['Centro Universitário Católica de Quixadá'] },
+      { id:'ficr', short:'FICR', label:'Faculdade Católica Imaculada Conceição do Recife', aliases:['Faculdade Católica Imaculada Conceição do Recife'] },
+      { id:'unileste', short:'Unileste', label:'Centro Universitário Católica do Leste de Minas Gerais', aliases:['Centro Universitário Católica do Leste de Minas Gerais'] },
+      { id:'ucb', short:'UCB', label:'Universidade Católica de Brasília', aliases:['Universidade Católica de Brasília'] },
+    ];
+    const keys = ['m','e','d','c','q','a','o'];
+    const $ = id => document.getElementById(id);
+    const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+    const isTarget = name => normalize(name) === normalize(TARGET) || normalize(name).includes('unicatolica') || normalize(name).includes('catolica de quixada');
+    const missionRow = (courseId, unit) => rowsFor(courseId).find(row => unit.aliases.some(alias => normalize(row.i) === normalize(alias)));
+    const numeric = value => { const match = String(value ?? '').replace(',','.').match(/\d+(?:\.\d+)?/); return match ? Number(match[0]) : null; };
+    const rankNumber = value => { const match = String(value ?? '').replace(',','.').match(/\d+/); return match ? Number(match[0]) : Infinity; };
+    const fmt = value => value === null || value === undefined || value === '' ? '—' : String(value).replace('.', ',');
+    const loadedMeta = () => meta.filter(item => Array.isArray(data[item.id]) && data[item.id].length);
+    const selectedMeta = () => state.course === 'all' ? null : meta.find(item => item.id === state.course);
+    const rowsFor = courseId => courseId && data[courseId] ? data[courseId] : [];
+    const targetRow = courseId => rowsFor(courseId).find(row => isTarget(row.i));
+    function showToast(message) { const toast=$('toast'); toast.textContent=message; toast.classList.add('show'); clearTimeout(window.__toast); window.__toast=setTimeout(()=>toast.classList.remove('show'), 3000); }
+    function statusFor(position) { const n=rankNumber(position); if (!Number.isFinite(n)) return ['Sem posição','muted']; if (n <= 50) return ['Destaque','good']; if (n <= 200) return ['Acompanhar','warn']; return ['Faixa ampliada','muted']; }
+    function populateCourseSelect() {
+      $('courseSelect').innerHTML = '<option value="all">Todos os cursos</option>' + meta.map(item => `<option value="${item.id}">${item.name}${data[item.id]?.length ? '' : ' · pendente'}</option>`).join('');
+      $('courseSelect').value = state.course;
+    }
+    function populateUfSelect() {
+      const courseIds = state.course === 'all' ? loadedMeta().map(item=>item.id) : [state.course];
+      const ufs = [...new Set(courseIds.flatMap(id => rowsFor(id).map(row=>row.u).filter(Boolean)))].sort();
+      $('ufSelect').innerHTML = '<option value="all">Todos os estados</option>' + ufs.map(uf=>`<option>${uf}</option>`).join('');
+      if (!ufs.includes(state.uf)) state.uf='all';
+      $('ufSelect').value=state.uf;
+    }
+    function setScope(scope) { state.scope=scope; document.querySelectorAll('[data-scope]').forEach(btn=>btn.classList.toggle('active',btn.dataset.scope===scope)); render(); }
+    function renderStats() {
+      const loaded=loadedMeta(); const targetRows=loaded.map(item=>({item,row:targetRow(item.id)})).filter(x=>x.row);
+      const positions=targetRows.map(x=>rankNumber(x.row.p)).filter(Number.isFinite);
+      const best=positions.length ? Math.min(...positions) : null;
+      const avg=positions.length ? Math.round(positions.reduce((a,b)=>a+b,0)/positions.length) : null;
+      const present=targetRows.length;
+      const cards=[
+        ['Cursos com CSV', `${loaded.length}/${meta.length}`, 'arquivos incorporados nesta versão'],
+        ['Cursos localizados', `${present}`, 'com linha da Unicatólica na base'],
+        ['Melhor posição', best ? `${best}º` : '—', best ? 'entre os cursos localizados' : 'sem posição disponível'],
+        ['Posição média', avg ? `${avg}º` : '—', 'média simples das posições localizadas'],
+      ];
+      $('stats').innerHTML=cards.map(card=>`<article class="stat"><span class="label">${card[0]}</span><strong class="value">${card[1]}</strong><span class="detail">${card[2]}</span></article>`).join('');
+      $('loadedCount').textContent=`${loaded.length}/${meta.length}`;
+    }
+    function renderCourseGrid() {
+      const list=meta.filter(item=> state.scope==='all' ? true : true);
+      $('courseGrid').innerHTML=list.map(item=>{
+        const rows=rowsFor(item.id), row=targetRow(item.id), [status, statusClass]=row ? statusFor(row.p) : ['Dados pendentes','muted'];
+        const loaded=rows.length>0;
+        const action=loaded ? `data-open-course="${item.id}"` : '';
+        const indicator=row ? (row.e.n ? `Ensino ${fmt(row.e.n)}` : row.m.n ? `Mercado ${fmt(row.m.n)}` : 'Indicadores parciais') : (item.note || 'CSV ainda não incorporado');
+        return `<article class="course-card ${loaded?'loaded':'pending'}" ${action} tabindex="${loaded?'0':'-1'}"><div><div class="course-title">${item.name}</div><div class="course-meta">${item.rufName ? `RUF: ${item.rufName}` : 'Fora da lista direta do RUF 2026'}</div></div><div class="rank">${row ? `${fmt(row.p)}<small>º posição</small>` : '—'}</div><div class="course-bottom"><span class="mini-note">${indicator}</span><span class="status ${statusClass}">${status}</span></div></article>`;
+      }).join('');
+      document.querySelectorAll('[data-open-course]').forEach(card=>{ const go=()=>{ state.course=card.dataset.openCourse; $('courseSelect').value=state.course; populateUfSelect(); render(); $('detailSection').scrollIntoView({behavior:'smooth',block:'start'}); }; card.addEventListener('click',go); card.addEventListener('keydown',e=>{if(e.key==='Enter')go();}); });
+    }
+    function renderDetail() {
+      const item=selectedMeta();
+      if (!item) { $('detailTitle').textContent='Detalhe do curso'; $('detailSubtitle').textContent='Clique em um cartão carregado para abrir o retrato do curso.'; $('focusPanel').innerHTML='<h3>Selecione um curso</h3><p class="sub">A visão geral acima permite abrir qualquer uma das carreiras com CSV disponível.</p><div class="empty">Os cursos sem planilha permanecem sinalizados como pendentes.</div>'; $('meterList').innerHTML='<div class="empty">Selecione um curso carregado para exibir seus indicadores.</div>'; return; }
+      const row=targetRow(item.id); $('detailTitle').textContent=item.name; $('detailSubtitle').textContent=row ? `${TARGET} · ${item.rufName || item.name}` : `${item.name} · ${item.note || 'A instituição não foi localizada no CSV disponível.'}`;
+      if (!row) { $('focusPanel').innerHTML=`<h3>Sem linha da Unicatólica nesta base</h3><p class="sub">O CSV de ${item.name} foi carregado, mas não contém uma linha com o nome “${TARGET}”. Isso não deve ser interpretado como posição zero.</p><div class="empty">Use o comparativo para consultar todas as instituições disponíveis.</div>`; $('meterList').innerHTML='<div class="empty">Sem indicadores da instituição para exibir.</div>'; return; }
+      const [status,statusClass]=statusFor(row.p);
+      $('focusPanel').innerHTML=`<div class="eyebrow">${item.rufName || item.name}</div><h3 style="margin-top:12px">Posição geral</h3><div class="focus-rank"><strong>${fmt(row.p)}</strong><span>º lugar</span></div><div class="focus-name">${TARGET} · ${row.u} · ${row.t}</div><span class="status ${statusClass}" style="margin-top:18px">${status}</span>`;
+      $('meterList').innerHTML=keys.filter(key=>row[key] && (row[key].n || row[key].r)).map(key=>{ const value=numeric(row[key].n); const max=key==='e'?70:key==='m'?30:key==='a'?40:key==='o'?35:8; const width=value===null?0:Math.max(4,Math.min(100,(value/max)*100)); return `<div class="meter-row"><span class="meter-name">${labels[key]}</span><span class="meter-rank">posição ${fmt(row[key].r)}</span><span class="meter-value">${fmt(row[key].n)}</span><span class="meter-track"><span class="meter-fill" style="width:${width}%"></span></span></div>`; }).join('') || '<div class="empty">Sem indicadores preenchidos.</div>';
+    }
+    function filteredRows() {
+      const item=selectedMeta();
+      if (!item) return [];
+      const rows=rowsFor(item.id).filter(row=>{
+        const matchesScope=state.scope==='all' || isTarget(row.i);
+        const matchesSearch=!state.search || normalize(row.i).includes(normalize(state.search));
+        const matchesUf=state.uf==='all' || row.u===state.uf;
+        const matchesType=state.type==='all' || row.t===state.type;
+        const matchesPosition=state.position==='all' || rankNumber(row.p)<=Number(state.position);
+        return matchesScope && matchesSearch && matchesUf && matchesType && matchesPosition;
+      });
+      return rows.sort((a,b)=>rankNumber(a.p)-rankNumber(b.p) || a.i.localeCompare(b.i,'pt-BR'));
+    }
+    function cell(pair) { return pair && (pair.n || pair.r) ? `<span class="num">${fmt(pair.n)}</span><br><span class="muted">${pair.r ? `pos. ${fmt(pair.r)}` : 'sem posição'}</span>` : '<span class="muted">—</span>'; }
+    function renderMissionCompare() {
+      const item=selectedMeta();
+      if (!item) { $('missionSubtitle').textContent='Selecione um curso para comparar Unicatólica, FICR, Unileste e UCB.'; $('missionResultCount').textContent='Nenhum curso selecionado'; $('missionSummary').innerHTML=''; $('missionBody').innerHTML='<tr><td colspan="9" class="empty">Abra um curso carregado para exibir a comparação entre unidades de missão.</td></tr>'; return; }
+      if (!rowsFor(item.id).length) { $('missionSubtitle').textContent=`${item.name} ainda não tem CSV incorporado.`; $('missionResultCount').textContent='Dados pendentes'; $('missionSummary').innerHTML='<article class="mission-card"><span class="label">Próximo passo</span><strong class="value">Adicionar CSV</strong><span class="detail">Use o importador ao final do painel.</span></article>'; $('missionBody').innerHTML=`<tr><td colspan="9" class="empty">Adicione o arquivo ${item.file || 'CSV correspondente'} para comparar as unidades.</td></tr>`; return; }
+      const entries=MISSION_UNITS.map(unit=>({unit,row:missionRow(item.id,unit)})); const located=entries.filter(entry=>entry.row); const ranked=located.filter(entry=>Number.isFinite(rankNumber(entry.row.p))).sort((a,b)=>rankNumber(a.row.p)-rankNumber(b.row.p)); const best=ranked[0]; const target=entries.find(entry=>entry.unit.id==='unicatolica'); const delta=best && target?.row && Number.isFinite(rankNumber(target.row.p)) ? rankNumber(target.row.p)-rankNumber(best.row.p) : null;
+      $('missionSubtitle').textContent=`${item.name} · comparação direta das unidades de missão encontradas no CSV.`; $('missionResultCount').textContent=`${located.length}/4 unidades localizadas`;
+      $('missionSummary').innerHTML=[['Unidades localizadas',`${located.length}/4`,'linhas encontradas nesta carreira'],['Melhor posição do grupo',best?`${best.unit.short} · ${fmt(best.row.p)}º`:'—',best?best.unit.label:'sem posição disponível'],['Unicatólica vs melhor',delta===null?'—':delta===0?'mesma melhor posição':`+${delta} posições`,delta===null?'não é possível calcular a diferença':'diferença usando a posição geral']].map(card=>`<article class="mission-card"><span class="label">${card[0]}</span><strong class="value">${card[1]}</strong><span class="detail">${card[2]}</span></article>`).join('');
+      $('missionBody').innerHTML=entries.map(({unit,row})=>`<tr class="${unit.id==='unicatolica'?'target':''}"><td class="inst"><span class="mission-badge ${unit.id}">${unit.short}</span><span class="mission-long">${unit.label}</span></td><td class="num">${row?fmt(row.p):'<span class="muted">Não localizado</span>'}</td><td>${row?cell(row.m):'<span class="muted">—</span>'}</td><td>${row?cell(row.e):'<span class="muted">—</span>'}</td><td>${row?cell(row.d):'<span class="muted">—</span>'}</td><td>${row?cell(row.c):'<span class="muted">—</span>'}</td><td>${row?cell(row.q):'<span class="muted">—</span>'}</td><td>${row?cell(row.a):'<span class="muted">—</span>'}</td><td>${row?.o?cell(row.o):'<span class="muted">—</span>'}</td></tr>`).join('');
+    }
+    function renderTable() {
+      const item=selectedMeta();
+      if (!item) { $('compareSubtitle').textContent='Selecione um curso para abrir a tabela de instituições.'; $('resultCount').textContent='Nenhum curso selecionado'; $('tableBody').innerHTML='<tr><td colspan="11" class="empty">Selecione um curso carregado.</td></tr>'; return; }
+      if (!rowsFor(item.id).length) { $('compareSubtitle').textContent=`${item.name} ainda não tem CSV incorporado.`; $('resultCount').textContent='Dados pendentes'; $('tableBody').innerHTML=`<tr><td colspan="11" class="empty">Adicione o arquivo ${item.file || 'CSV correspondente'} usando o botão de importação.</td></tr>`; return; }
+      const rows=filteredRows(); $('compareSubtitle').textContent=`${item.name} · ${state.scope==='target'?'visão filtrada para a Unicatólica':'todas as instituições da base'}`; $('resultCount').textContent=`${rows.length} instituição${rows.length===1?'':'ões'}`;
+      $('tableBody').innerHTML=rows.map(row=>`<tr class="${isTarget(row.i)?'target':''}"><td class="inst">${isTarget(row.i)?'<span class="pill target">UNICATÓLICA</span> ':''}${row.i}</td><td>${row.u||'—'}</td><td>${row.t||'—'}</td><td class="num">${fmt(row.p)}</td><td>${cell(row.m)}</td><td>${cell(row.e)}</td><td>${cell(row.d)}</td><td>${cell(row.c)}</td><td>${cell(row.q)}</td><td>${cell(row.a)}</td><td>${row.o?cell(row.o):'<span class="muted">—</span>'}</td></tr>`).join('') || '<tr><td colspan="11" class="empty">Nenhuma instituição corresponde aos filtros atuais.</td></tr>';
+    }
+    function render() { populateCourseSelect(); populateUfSelect(); renderStats(); renderCourseGrid(); renderDetail(); renderMissionCompare(); renderTable(); }
+    function reset() { state.course='all'; state.scope='target'; state.search=''; state.uf='all'; state.type='all'; state.position='all'; $('searchInput').value=''; $('typeSelect').value='all'; $('positionSelect').value='all'; setScope('target'); showToast('Filtros limpos.'); }
+    function parseCsv(text) {
+      const lines=[]; let row=[], field='', quoted=false;
+      for(let i=0;i<text.length;i++){ const ch=text[i], next=text[i+1]; if(ch==='"' && quoted && next==='"'){field+='"';i++;continue;} if(ch==='"'){quoted=!quoted;continue;} if(ch===';' && !quoted){row.push(field);field='';continue;} if((ch==='\n'||ch==='\r')&&!quoted){if(ch==='\r'&&next==='\n')i++;row.push(field);field='';if(row.some(Boolean))lines.push(row);row=[];continue;} field+=ch; } if(field||row.length){row.push(field);if(row.some(Boolean))lines.push(row);} return lines;
+    }
+    function normalizeHeader(value){ return normalize(value).replace(/^\ufeff/,'').replace(/\s+/g,' ').trim(); }
+    function rowsFromCsv(text){ const matrix=parseCsv(text); if(matrix.length<2)return []; const headers=matrix[0].map(normalizeHeader); const index=name=>headers.indexOf(normalizeHeader(name)); const get=(r,name)=>{const i=index(name);return i>=0?(r[i]||''):''}; return matrix.slice(1).map(r=>{const item={i:get(r,'Universidade'),u:get(r,'Estado'),p:get(r,'Posição'),t:get(r,'Pública ou Privada'),m:{r:get(r,'Posição em avaliação do Mercado'),n:get(r,'Nota em avaliação do Mercado')},e:{r:get(r,'Posição em qualidade de ensino'),n:get(r,'Nota em qualidade de ensino')},d:{r:get(r,'Posição em Professores com doutorado e mestrado'),n:get(r,'Nota em Professores com doutorado e mestrado')},c:{r:get(r,'Posição Nota dos concluintes'),n:get(r,'Nota dos concluintes')},q:{r:get(r,'Posição em Tempo de Dedicação dos Professores'),n:get(r,'Nota em Tempo de Dedicação dos Professores')},a:{r:get(r,'Posição em avaliação dos docentes'),n:get(r,'Nota em avaliação dos docentes')}}; if(index('Nota da OAB')>=0)item.o={r:get(r,'Posição Nota da OAB'),n:get(r,'Nota da OAB')}; return item;}).filter(r=>r.i); }
+    function fileCourseId(name){ const n=normalize(name).replace(/\.csv$/,'').replace(/_/g,'-'); const direct=meta.find(item=>normalize(item.id)===n || normalize(item.file||'').replace(/\.csv$/,'')===n); if(direct)return direct.id; if(n.includes('administracao'))return'administracao'; if(n.includes('zootecnia'))return'zootecnia'; if(n.includes('agronomia'))return'agronomia'; if(n.includes('engenharia-civil'))return'engenharia-civil'; if(n.includes('computacao'))return'engenharia-de-software'; return null; }
+    async function loadData() {
+      $('courseSelect').innerHTML='<option value="all">Carregando dados…</option>';
+      try {
+        const response=await fetch('dados/manifest.json',{cache:'no-cache'});
+        if (!response.ok) throw new Error(`manifest ${response.status}`);
+        const manifest=await response.json();
+        meta=Array.isArray(manifest.meta) ? manifest.meta.map(item=>({...item})) : [];
+        data={};
+        await Promise.all(meta.filter(item=>item.file).map(async item=>{
+          try { const fileResponse=await fetch(`dados/${item.file}`,{cache:'no-cache'}); if(fileResponse.ok) data[item.id]=rowsFromCsv(await fileResponse.text()); } catch (_) { /* arquivo futuro ou ausente */ }
+        }));
+        $('generatedInfo').textContent=`Gerado em ${manifest.generated || '—'}.`;
+        render();
+      } catch (error) {
+        $('courseSelect').innerHTML='<option value="all">Não foi possível carregar os dados</option>';
+        $('missionSubtitle').textContent='Abra o painel pelo GitHub Pages ou por um servidor local para carregar a pasta dados/.';
+        $('compareSubtitle').textContent='A interface carregou, mas os CSVs não foram encontrados.';
+        $('generatedInfo').textContent='Erro ao carregar dados/. Verifique a publicação do repositório.';
+        showToast('Não foi possível carregar dados/. Publique também a pasta dados/.');
+      }
+    }
+    $('courseSelect').addEventListener('change',e=>{state.course=e.target.value; state.uf='all'; render();});
+    $('searchInput').addEventListener('input',e=>{state.search=e.target.value; renderTable();});
+    $('ufSelect').addEventListener('change',e=>{state.uf=e.target.value; renderTable();});
+    $('typeSelect').addEventListener('change',e=>{state.type=e.target.value; renderTable();});
+    $('positionSelect').addEventListener('change',e=>{state.position=e.target.value; renderTable();});
+    document.querySelectorAll('[data-scope]').forEach(btn=>btn.addEventListener('click',()=>setScope(btn.dataset.scope)));
+    $('resetBtn').addEventListener('click',reset); $('printBtn').addEventListener('click',()=>window.print());
+    $('downloadBtn').addEventListener('click',()=>{ const item=selectedMeta(); if(!item||!rowsFor(item.id).length)return showToast('Selecione um curso com dados.'); const rows=filteredRows(); const header=['Universidade','Estado','Pública ou Privada','Posição','Nota mercado','Nota ensino','Nota doutorado/mestrado','Nota concluintes','Nota dedicação','Nota docentes','Nota OAB']; const lines=[header,...rows.map(r=>[r.i,r.u,r.t,r.p,r.m?.n,r.e?.n,r.d?.n,r.c?.n,r.q?.n,r.a?.n,r.o?.n].map(v=>`"${String(v||'').replaceAll('"','""')}"`))]; const blob=new Blob([lines.map(line=>line.join(';')).join('\n')],{type:'text/csv;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`recorte-${item.id}.csv`; a.click(); URL.revokeObjectURL(a.href); });
+    $('fileInput').addEventListener('change',async e=>{ for(const file of e.target.files){ const id=fileCourseId(file.name); if(!id){showToast(`Não identifiquei o curso em ${file.name}.`);continue;} const rows=rowsFromCsv(await file.text()); if(!rows.length){showToast(`Não foi possível ler ${file.name}.`);continue;} data[id]=rows; const item=meta.find(x=>x.id===id); if(item)item.available=true; state.course=id; state.scope='target'; showToast(`${item?.name||id}: ${rows.length} instituições importadas.`); } e.target.value=''; render(); });
+    loadData();
+  </script>
+</body>
+</html>
