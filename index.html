@@ -33,6 +33,15 @@
     button { cursor: pointer; }
     a { color: inherit; }
     .shell { max-width: 1440px; margin: 0 auto; padding: 28px 28px 72px; }
+    main { display:flex; flex-direction:column; }
+    .hero { order:0; }
+    .course-start { order:1; }
+    .toolbar { order:2; }
+    #missionSection { order:3; }
+    #compareSection { order:4; }
+    #overviewSection { order:5; }
+    #detailSection { order:6; }
+    #dataSection { order:7; }
     .topbar { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom: 34px; }
     .brand { display:flex; align-items:center; gap:13px; color:var(--navy); }
     .mark { width:42px; height:42px; border-radius: 14px 14px 14px 5px; display:grid; place-items:center; background:var(--navy); color:#fff; font-weight:900; letter-spacing:-.08em; box-shadow: 6px 6px 0 var(--orange); }
@@ -49,11 +58,22 @@
     h1, h2, h3, p { margin-top:0; }
     h1 { max-width: 820px; font-size: clamp(2.1rem, 4vw, 4.35rem); letter-spacing:-.075em; line-height:.98; margin:17px 0 18px; position:relative; z-index:1; }
     .hero-main p { max-width:700px; color:#c9d7e1; font-size:1.02rem; position:relative; z-index:1; margin-bottom:0; }
+    .hero-actions { position:relative; z-index:1; display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:26px; }
+    .start-button { display:inline-flex; align-items:center; gap:12px; border:0; border-radius:13px; padding:13px 16px; color:var(--navy); background:var(--yellow); font-weight:900; box-shadow:0 8px 18px rgba(0,0,0,.12); transition:.2s ease; }
+    .start-button:hover { transform:translateY(-2px); background:#f7d98a; }
+    .start-button span { font-size:1.15rem; }
+    .selection-status { color:#c9d7e1; font-size:.8rem; font-weight:750; }
     .hero-note { background:var(--cream); border-radius:28px; padding:28px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:var(--shadow); }
     .hero-note .big { color:var(--navy); font-size:3.25rem; line-height:1; font-weight:900; letter-spacing:-.08em; }
     .hero-note p { color:var(--muted); margin:8px 0 0; }
     .source-link { display:inline-flex; width:fit-content; margin-top:24px; color:var(--navy); font-size:.88rem; font-weight:800; text-decoration:none; border-bottom:2px solid var(--orange); }
-    .toolbar { position:sticky; top:12px; z-index:5; display:grid; grid-template-columns: 1.25fr 1fr 1fr 1fr 1fr; gap:10px; padding:13px; margin-bottom:22px; background:rgba(255,255,255,.92); backdrop-filter: blur(14px); border:1px solid rgba(217,226,232,.92); border-radius:16px; box-shadow: 0 12px 30px rgba(16,42,67,.08); }
+    .course-start { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr); gap:20px; align-items:center; padding:20px 22px; margin-bottom:8px; border:1px solid #ddd3be; border-radius:20px; background:var(--cream); box-shadow:0 10px 30px rgba(16,42,67,.06); }
+    .course-start h2 { color:var(--navy); font-size:1.45rem; letter-spacing:-.05em; margin:7px 0 5px; }
+    .course-start p { color:#6d6759; margin:0; font-size:.88rem; max-width:680px; }
+    .course-select-wrap { display:flex; align-items:end; gap:9px; }
+    .course-select-wrap .field { flex:1; }
+    .course-select-wrap .button { min-height:42px; white-space:nowrap; }
+    .toolbar { position:sticky; top:12px; z-index:5; display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; padding:13px; margin-bottom:22px; background:rgba(255,255,255,.92); backdrop-filter: blur(14px); border:1px solid rgba(217,226,232,.92); border-radius:16px; box-shadow: 0 12px 30px rgba(16,42,67,.08); }
     .field label { display:block; color:var(--muted); font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; margin:0 0 5px 3px; }
     .field input, .field select { width:100%; min-height:42px; border:1px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); padding:9px 11px; outline:none; }
     .field input:focus, .field select:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(8,127,140,.13); }
@@ -82,6 +102,20 @@
     .mission-badge.unileste { background:#5d6bc1; }
     .mission-badge.ucb { background:#8a5da8; }
     .mission-long { color:var(--navy); font-weight:800; white-space:normal; }
+    .chart-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; margin-bottom:13px; }
+    .chart-card { min-height:260px; padding:19px 20px; border:1px solid var(--line); border-radius:18px; background:#fff; box-shadow:0 7px 22px rgba(16,42,67,.04); }
+    .chart-card h3 { color:var(--navy); font-size:1rem; letter-spacing:-.04em; margin:0 0 4px; }
+    .chart-card p { color:var(--muted); font-size:.76rem; margin-bottom:16px; }
+    .chart-empty { min-height:172px; display:grid; place-items:center; padding:20px; border:1px dashed #c8d3d8; border-radius:13px; color:var(--muted); text-align:center; font-size:.86rem; }
+    .chart-list { display:grid; gap:12px; }
+    .chart-row { display:grid; grid-template-columns:92px minmax(0,1fr) 58px; gap:9px; align-items:center; }
+    .chart-unit { color:var(--navy); font-size:.76rem; font-weight:850; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .chart-track { height:13px; overflow:hidden; border-radius:99px; background:#edf2f3; }
+    .chart-fill { display:block; height:100%; min-width:8px; border-radius:inherit; background:linear-gradient(90deg,var(--teal),#69c4c1); }
+    .chart-row strong { color:var(--navy); font-size:.78rem; text-align:right; font-variant-numeric:tabular-nums; }
+    .metric-block + .metric-block { margin-top:18px; }
+    .metric-title { color:var(--muted); font-size:.7rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; margin-bottom:9px; }
+    .mission-empty-card { grid-column:1 / -1; }
     .course-card { position:relative; min-height:205px; display:flex; flex-direction:column; justify-content:space-between; padding:18px; border:1px solid var(--line); border-radius:17px; background:#fff; transition:.2s ease; overflow:hidden; }
     .course-card:hover { border-color:#b9cbd5; transform:translateY(-2px); box-shadow:0 12px 26px rgba(16,42,67,.08); }
     .course-card.loaded { cursor:pointer; }
@@ -144,6 +178,7 @@
     .toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%, 20px); opacity:0; pointer-events:none; background:var(--navy); color:#fff; padding:12px 16px; border-radius:11px; font-size:.82rem; font-weight:700; box-shadow:0 10px 30px rgba(16,42,67,.25); transition:.25s ease; z-index:20; }
     .toast.show { opacity:1; transform:translate(-50%, 0); }
     .hidden { display:none !important; }
+    @media (max-width: 760px) { .course-start { grid-template-columns:1fr; } .course-select-wrap { align-items:stretch; flex-direction:column; } .course-select-wrap .button { width:100%; } .chart-grid { grid-template-columns:1fr; } }
     @media (max-width: 1100px) { .toolbar { grid-template-columns: repeat(3, 1fr); } .course-grid { grid-template-columns: repeat(3, 1fr); } .hero { grid-template-columns:1fr; } }
     @media (max-width: 760px) { .shell { padding:18px 15px 50px; } .topbar { align-items:flex-start; flex-direction:column; } .top-actions { justify-content:flex-start; } .hero-main { padding:27px 23px; } .hero-note { min-height:180px; } h1 { font-size:2.55rem; } .toolbar { position:static; grid-template-columns:1fr 1fr; } .toolbar .field:first-child { grid-column:1 / -1; } .stats, .course-grid, .info-grid, .mission-summary { grid-template-columns:1fr 1fr; } .detail-grid { grid-template-columns:1fr; } .section-head { align-items:flex-start; flex-direction:column; } .meter-row { grid-template-columns:1fr auto; } .meter-track { grid-column:1 / -1; grid-row:2; } .meter-value { grid-column:2; grid-row:1; } .import { align-items:flex-start; flex-direction:column; } }
     @media (max-width: 480px) { .toolbar { grid-template-columns:1fr; } .toolbar .field:first-child { grid-column:auto; } .stats, .course-grid, .info-grid, .mission-summary { grid-template-columns:1fr; } .top-actions { width:100%; } .top-actions .button { flex:1; } }
@@ -159,12 +194,16 @@
 
     <main>
       <section class="hero">
-        <div class="hero-main"><div class="eyebrow">Ranking Universitário Folha · 2026</div><h1>Uma leitura mais clara da posição de cada curso.</h1><p>Compare a Unicatólica com FICR, Unileste e UCB, explore os indicadores disponíveis e identifique rapidamente onde há dados, lacunas e oportunidades de aprofundamento.</p></div>
+        <div class="hero-main"><div class="eyebrow">Ranking Universitário Folha · 2026</div><h1>Uma leitura mais clara da posição de cada curso.</h1><p>Comece pela comparação entre as unidades de missão da UBEC. Depois, explore a posição regional e os detalhes de todos os cursos.</p><div class="hero-actions"><button class="start-button" id="selectCourseBtn">Selecione um curso antes de começar <span aria-hidden="true">↓</span></button><span class="selection-status" id="selectionStatus">Nenhum curso selecionado</span></div></div>
         <aside class="hero-note"><div><div class="big" id="loadedCount">8/15</div><p>cursos da Unicatólica com planilha anexada nesta versão.</p></div><a class="source-link" href="https://ruf.folha.uol.com.br/2026/ranking-de-cursos/direito/" target="_blank" rel="noopener">Abrir fonte oficial do RUF 2026 ↗</a></aside>
       </section>
 
+      <section class="course-start" id="courseStart">
+        <div class="course-start-copy"><div class="eyebrow" style="color:var(--teal)">Primeiro passo</div><h2>Selecione um curso antes de começar</h2><p>O comparativo do grupo e os gráficos abaixo só são preenchidos depois que uma carreira é escolhida.</p></div>
+        <div class="course-select-wrap"><div class="field"><label for="courseSelect">Curso da análise</label><select id="courseSelect"></select></div><button class="button primary" id="startCourseBtn">Abrir comparativo →</button></div>
+      </section>
+
       <section class="toolbar" aria-label="Filtros do painel">
-        <div class="field"><label for="courseSelect">Curso</label><select id="courseSelect"></select></div>
         <div class="field"><label for="searchInput">Buscar instituição</label><input id="searchInput" type="search" placeholder="Ex.: Universidade Federal..."></div>
         <div class="field"><label for="ufSelect">Estado</label><select id="ufSelect"><option value="all">Todos os estados</option></select></div>
         <div class="field"><label for="typeSelect">Natureza</label><select id="typeSelect"><option value="all">Pública e privada</option><option>Federal</option><option>Estadual</option><option>Municipal</option><option>Privada</option></select></div>
@@ -172,7 +211,7 @@
       </section>
 
       <section class="section" id="overviewSection">
-        <div class="section-head"><div><h2>Visão geral da Unicatólica</h2><p>Os cartões abaixo usam a posição geral do RUF quando a instituição foi localizada no CSV.</p></div><div class="section-tools"><div class="segmented"><button class="active" data-scope="target">Unicatólica</button><button data-scope="all">Todas as instituições</button></div></div></div>
+        <div class="section-head"><div><h2>Visão geral de todos os cursos</h2><p>Esta leitura consolidada fica no final para não interromper a comparação principal do curso selecionado.</p></div><div class="section-tools"><div class="segmented"><button class="active" data-scope="target">Unicatólica</button><button data-scope="all">Todas as instituições</button></div></div></div>
         <div class="stats" id="stats"></div>
         <div class="course-grid" id="courseGrid" style="margin-top:13px"></div>
       </section>
@@ -187,11 +226,12 @@
 
       <section class="section" id="missionSection">
         <div class="section-head"><div><h2>Unidades de missão lado a lado</h2><p id="missionSubtitle">Selecione um curso para comparar Unicatólica, FICR, Unileste e UCB.</p></div><div class="section-tools"><span class="pill">Comparação principal da reitoria</span></div></div>
+        <div class="chart-grid"><article class="chart-card"><h3>Posição geral no RUF</h3><p>Quanto maior a barra, melhor a posição. A colocação publicada aparece à direita.</p><div id="rankChart"></div></article><article class="chart-card"><h3>Notas de mercado e ensino</h3><p>Barras normalizadas dentro de cada indicador; os valores originais aparecem à direita.</p><div id="indicatorChart"></div></article></div>
         <div class="mission-summary" id="missionSummary"></div>
         <div class="panel compare-card"><div class="compare-top"><strong id="missionResultCount">Nenhum curso selecionado</strong><span class="muted" id="missionHint">“Não localizado” não significa posição zero.</span></div><div class="table-wrap"><table class="mission-table"><thead><tr><th>Unidade</th><th>Posição geral</th><th>Mercado</th><th>Ensino</th><th>Doutorado / mestrado</th><th>Concluintes</th><th>Dedicação</th><th>Docentes</th><th>OAB</th></tr></thead><tbody id="missionBody"></tbody></table></div></div>
       </section>
       <section class="section" id="compareSection">
-        <div class="section-head"><div><h2>Comparativo entre instituições</h2><p id="compareSubtitle">Filtre por estado, natureza, busca ou posição para encontrar referências.</p></div><div class="section-tools"><button class="button" id="downloadBtn">Baixar recorte CSV</button></div></div>
+        <div class="section-head"><div><h2>Comparativo regional</h2><p id="compareSubtitle">Selecione um curso para comparar as instituições do estado da Unicatólica.</p></div><div class="section-tools"><div class="segmented"><button class="active" id="regionOnlyBtn">Estado da Unicatólica</button><button id="allBrazilBtn">Brasil inteiro</button></div><button class="button" id="downloadBtn">Baixar recorte CSV</button></div></div>
         <div class="panel compare-card"><div class="compare-top"><strong id="resultCount">0 instituições</strong><span class="muted" id="resultHint">A Unicatólica fica destacada em laranja.</span></div><div class="table-wrap"><table><thead><tr><th>Instituição</th><th>UF</th><th>Natureza</th><th>Posição</th><th>Mercado</th><th>Ensino</th><th>Doutorado / mestrado</th><th>Concluintes</th><th>Dedicação</th><th>Docentes</th><th>OAB</th></tr></thead><tbody id="tableBody"></tbody></table></div></div>
       </section>
 
@@ -213,7 +253,7 @@
   <script>
     const INITIAL = { target:'Centro Universitário Católica do Tocantins' };
     let TARGET = INITIAL.target;
-    const state = { course: 'all', scope: 'target', search: '', uf: 'all', type: 'all', position: 'all', sort: 'position' };
+    const state = { course: 'all', scope: 'target', search: '', uf: 'all', type: 'all', position: 'all', sort: 'position', regionOnly: true };
     let data = {};
     let meta = [];
     const labels = { m:'Mercado', e:'Qualidade de ensino', d:'Doutorado / mestrado', c:'Concluintes', q:'Dedicação docente', a:'Avaliação docente', o:'OAB' };
@@ -273,11 +313,11 @@
         const indicator=row ? (row.e.n ? `Ensino ${fmt(row.e.n)}` : row.m.n ? `Mercado ${fmt(row.m.n)}` : 'Indicadores parciais') : (item.note || 'CSV ainda não incorporado');
         return `<article class="course-card ${loaded?'loaded':'pending'}" ${action} tabindex="${loaded?'0':'-1'}"><div><div class="course-title">${item.name}</div><div class="course-meta">${item.rufName ? `RUF: ${item.rufName}` : 'Fora da lista direta do RUF 2026'}</div></div><div class="rank">${row ? `${fmt(row.p)}<small>º posição</small>` : '—'}</div><div class="course-bottom"><span class="mini-note">${indicator}</span><span class="status ${statusClass}">${status}</span></div></article>`;
       }).join('');
-      document.querySelectorAll('[data-open-course]').forEach(card=>{ const go=()=>{ state.course=card.dataset.openCourse; $('courseSelect').value=state.course; populateUfSelect(); render(); $('detailSection').scrollIntoView({behavior:'smooth',block:'start'}); }; card.addEventListener('click',go); card.addEventListener('keydown',e=>{if(e.key==='Enter')go();}); });
+      document.querySelectorAll('[data-open-course]').forEach(card=>{ const go=()=>{ state.course=card.dataset.openCourse; state.scope='all'; state.regionOnly=true; state.uf=targetRow(state.course)?.u || 'TO'; $('courseSelect').value=state.course; populateUfSelect(); render(); $('missionSection').scrollIntoView({behavior:'smooth',block:'start'}); }; card.addEventListener('click',go); card.addEventListener('keydown',e=>{if(e.key==='Enter')go();}); });
     }
     function renderDetail() {
       const item=selectedMeta();
-      if (!item) { $('detailTitle').textContent='Detalhe do curso'; $('detailSubtitle').textContent='Clique em um cartão carregado para abrir o retrato do curso.'; $('focusPanel').innerHTML='<h3>Selecione um curso</h3><p class="sub">A visão geral acima permite abrir qualquer uma das carreiras com CSV disponível.</p><div class="empty">Os cursos sem planilha permanecem sinalizados como pendentes.</div>'; $('meterList').innerHTML='<div class="empty">Selecione um curso carregado para exibir seus indicadores.</div>'; return; }
+      if (!item) { $('detailTitle').textContent='Detalhe do curso'; $('detailSubtitle').textContent='Clique em um cartão carregado ao final do painel para abrir o retrato do curso.'; $('focusPanel').innerHTML='<h3>Selecione um curso</h3><p class="sub">A visão geral ao final do painel permite abrir qualquer uma das carreiras com CSV disponível.</p><div class="empty">Os cursos sem planilha permanecem sinalizados como pendentes.</div>'; $('meterList').innerHTML='<div class="empty">Selecione um curso carregado para exibir seus indicadores.</div>'; return; }
       const row=targetRow(item.id); $('detailTitle').textContent=item.name; $('detailSubtitle').textContent=row ? `${TARGET} · ${item.rufName || item.name}` : `${item.name} · ${item.note || 'A instituição não foi localizada no CSV disponível.'}`;
       if (!row) { $('focusPanel').innerHTML=`<h3>Sem linha da Unicatólica nesta base</h3><p class="sub">O CSV de ${item.name} foi carregado, mas não contém uma linha com o nome “${TARGET}”. Isso não deve ser interpretado como posição zero.</p><div class="empty">Use o comparativo para consultar todas as instituições disponíveis.</div>`; $('meterList').innerHTML='<div class="empty">Sem indicadores da instituição para exibir.</div>'; return; }
       const [status,statusClass]=statusFor(row.p);
@@ -287,21 +327,32 @@
     function filteredRows() {
       const item=selectedMeta();
       if (!item) return [];
+      const regionState=state.uf==='all' ? (targetRow(item.id)?.u || 'TO') : state.uf;
       const rows=rowsFor(item.id).filter(row=>{
         const matchesScope=state.scope==='all' || isTarget(row.i);
         const matchesSearch=!state.search || normalize(row.i).includes(normalize(state.search));
         const matchesUf=state.uf==='all' || row.u===state.uf;
+        const matchesRegion=!state.regionOnly || row.u===regionState;
         const matchesType=state.type==='all' || row.t===state.type;
         const matchesPosition=state.position==='all' || rankNumber(row.p)<=Number(state.position);
-        return matchesScope && matchesSearch && matchesUf && matchesType && matchesPosition;
+        return matchesScope && matchesSearch && matchesUf && matchesRegion && matchesType && matchesPosition;
       });
       return rows.sort((a,b)=>rankNumber(a.p)-rankNumber(b.p) || a.i.localeCompare(b.i,'pt-BR'));
     }
     function cell(pair) { return pair && (pair.n || pair.r) ? `<span class="num">${fmt(pair.n)}</span><br><span class="muted">${pair.r ? `pos. ${fmt(pair.r)}` : 'sem posição'}</span>` : '<span class="muted">—</span>'; }
+    function chartRow(unit, value, width, suffix='') { return `<div class="chart-row"><span class="chart-unit" title="${unit.label}">${unit.short}</span><span class="chart-track"><span class="chart-fill" style="width:${width}%"></span></span><strong>${fmt(value)}${suffix}</strong></div>`; }
+    function renderMissionCharts() {
+      const item=selectedMeta(); const rankChart=$('rankChart'); const indicatorChart=$('indicatorChart');
+      if (!item || !rowsFor(item.id).length) { rankChart.innerHTML='<div class="chart-empty">Selecione um curso carregado para visualizar a posição das quatro unidades.</div>'; indicatorChart.innerHTML='<div class="chart-empty">Os gráficos aparecem depois da escolha do curso.</div>'; return; }
+      const entries=MISSION_UNITS.map(unit=>({unit,row:missionRow(item.id,unit)})); const ranked=entries.filter(entry=>entry.row && Number.isFinite(rankNumber(entry.row.p))).sort((a,b)=>rankNumber(a.row.p)-rankNumber(b.row.p));
+      if (!ranked.length) rankChart.innerHTML='<div class="chart-empty">Nenhuma unidade foi localizada nesta carreira.</div>'; else { const maxRank=Math.max(100,...ranked.map(entry=>rankNumber(entry.row.p))); rankChart.innerHTML=`<div class="chart-list">${ranked.map(entry=>chartRow(entry.unit,entry.row.p,Math.max(12,100-((rankNumber(entry.row.p)-1)/maxRank)*78),'º')).join('')}</div>`; }
+      const metric=(key,title)=>{ const values=entries.filter(entry=>entry.row && numeric(entry.row[key]?.n)!==null); if(!values.length)return ''; const max=Math.max(...values.map(entry=>numeric(entry.row[key].n))); return `<div class="metric-block"><div class="metric-title">${title}</div><div class="chart-list">${values.map(entry=>chartRow(entry.unit,entry.row[key].n,Math.max(8,(numeric(entry.row[key].n)/max)*100))).join('')}</div></div>`; };
+      indicatorChart.innerHTML=metric('e','Qualidade de ensino')+metric('m','Avaliação do mercado') || '<div class="chart-empty">Sem notas comparáveis nesta carreira.</div>';
+    }
     function renderMissionCompare() {
-      const item=selectedMeta();
-      if (!item) { $('missionSubtitle').textContent='Selecione um curso para comparar Unicatólica, FICR, Unileste e UCB.'; $('missionResultCount').textContent='Nenhum curso selecionado'; $('missionSummary').innerHTML=''; $('missionBody').innerHTML='<tr><td colspan="9" class="empty">Abra um curso carregado para exibir a comparação entre unidades de missão.</td></tr>'; return; }
-      if (!rowsFor(item.id).length) { $('missionSubtitle').textContent=`${item.name} ainda não tem CSV incorporado.`; $('missionResultCount').textContent='Dados pendentes'; $('missionSummary').innerHTML='<article class="mission-card"><span class="label">Próximo passo</span><strong class="value">Adicionar CSV</strong><span class="detail">Use o importador ao final do painel.</span></article>'; $('missionBody').innerHTML=`<tr><td colspan="9" class="empty">Adicione o arquivo ${item.file || 'CSV correspondente'} para comparar as unidades.</td></tr>`; return; }
+      const item=selectedMeta(); renderMissionCharts();
+      if (!item) { $('missionSubtitle').textContent='Selecione um curso para comparar Unicatólica, FICR, Unileste e UCB.'; $('missionResultCount').textContent='Aguardando curso'; $('missionSummary').innerHTML='<article class="mission-card mission-empty-card"><span class="label">Primeiro passo</span><strong class="value">Selecione um curso</strong><span class="detail">Use o botão destacado acima para iniciar a comparação das unidades do grupo.</span></article>'; $('missionBody').innerHTML='<tr><td colspan="9" class="empty">A tabela será preenchida depois da escolha do curso.</td></tr>'; return; }
+      if (!rowsFor(item.id).length) { $('missionSubtitle').textContent=`${item.name} ainda não tem CSV incorporado.`; $('missionResultCount').textContent='Dados pendentes'; $('missionSummary').innerHTML='<article class="mission-card mission-empty-card"><span class="label">Próximo passo</span><strong class="value">Adicionar CSV</strong><span class="detail">Use o importador ao final do painel.</span></article>'; $('missionBody').innerHTML=`<tr><td colspan="9" class="empty">Adicione o arquivo ${item.file || 'CSV correspondente'} para comparar as unidades.</td></tr>`; return; }
       const entries=MISSION_UNITS.map(unit=>({unit,row:missionRow(item.id,unit)})); const located=entries.filter(entry=>entry.row); const ranked=located.filter(entry=>Number.isFinite(rankNumber(entry.row.p))).sort((a,b)=>rankNumber(a.row.p)-rankNumber(b.row.p)); const best=ranked[0]; const target=entries.find(entry=>entry.unit.id==='unicatolica'); const delta=best && target?.row && Number.isFinite(rankNumber(target.row.p)) ? rankNumber(target.row.p)-rankNumber(best.row.p) : null;
       $('missionSubtitle').textContent=`${item.name} · comparação direta das unidades de missão encontradas no CSV.`; $('missionResultCount').textContent=`${located.length}/4 unidades localizadas`;
       $('missionSummary').innerHTML=[['Unidades localizadas',`${located.length}/4`,'linhas encontradas nesta carreira'],['Melhor posição do grupo',best?`${best.unit.short} · ${fmt(best.row.p)}º`:'—',best?best.unit.label:'sem posição disponível'],['Unicatólica vs melhor',delta===null?'—':delta===0?'mesma melhor posição':`+${delta} posições`,delta===null?'não é possível calcular a diferença':'diferença usando a posição geral']].map(card=>`<article class="mission-card"><span class="label">${card[0]}</span><strong class="value">${card[1]}</strong><span class="detail">${card[2]}</span></article>`).join('');
@@ -309,13 +360,14 @@
     }
     function renderTable() {
       const item=selectedMeta();
-      if (!item) { $('compareSubtitle').textContent='Selecione um curso para abrir a tabela de instituições.'; $('resultCount').textContent='Nenhum curso selecionado'; $('tableBody').innerHTML='<tr><td colspan="11" class="empty">Selecione um curso carregado.</td></tr>'; return; }
+      $('regionOnlyBtn').classList.toggle('active',state.regionOnly); $('allBrazilBtn').classList.toggle('active',!state.regionOnly);
+      if (!item) { $('compareSubtitle').textContent='Selecione um curso para abrir a tabela regional.'; $('resultCount').textContent='Aguardando curso'; $('tableBody').innerHTML='<tr><td colspan="11" class="empty">Selecione um curso carregado.</td></tr>'; return; }
       if (!rowsFor(item.id).length) { $('compareSubtitle').textContent=`${item.name} ainda não tem CSV incorporado.`; $('resultCount').textContent='Dados pendentes'; $('tableBody').innerHTML=`<tr><td colspan="11" class="empty">Adicione o arquivo ${item.file || 'CSV correspondente'} usando o botão de importação.</td></tr>`; return; }
-      const rows=filteredRows(); $('compareSubtitle').textContent=`${item.name} · ${state.scope==='target'?'visão filtrada para a Unicatólica':'todas as instituições da base'}`; $('resultCount').textContent=`${rows.length} instituição${rows.length===1?'':'ões'}`;
+      const rows=filteredRows(); const regionLabel=state.regionOnly ? `instituições de ${state.uf==='all'?(targetRow(item.id)?.u || 'TO'):state.uf}` : 'instituições de todo o Brasil'; $('compareSubtitle').textContent=`${item.name} · ${regionLabel} · ${state.scope==='target'?'visão filtrada para a Unicatólica':'todas as instituições disponíveis'}`; $('resultCount').textContent=`${rows.length} instituição${rows.length===1?'':'ões'}`;
       $('tableBody').innerHTML=rows.map(row=>`<tr class="${isTarget(row.i)?'target':''}"><td class="inst">${isTarget(row.i)?'<span class="pill target">UNICATÓLICA</span> ':''}${row.i}</td><td>${row.u||'—'}</td><td>${row.t||'—'}</td><td class="num">${fmt(row.p)}</td><td>${cell(row.m)}</td><td>${cell(row.e)}</td><td>${cell(row.d)}</td><td>${cell(row.c)}</td><td>${cell(row.q)}</td><td>${cell(row.a)}</td><td>${row.o?cell(row.o):'<span class="muted">—</span>'}</td></tr>`).join('') || '<tr><td colspan="11" class="empty">Nenhuma instituição corresponde aos filtros atuais.</td></tr>';
     }
-    function render() { populateCourseSelect(); populateUfSelect(); renderStats(); renderCourseGrid(); renderDetail(); renderMissionCompare(); renderTable(); }
-    function reset() { state.course='all'; state.scope='target'; state.search=''; state.uf='all'; state.type='all'; state.position='all'; $('searchInput').value=''; $('typeSelect').value='all'; $('positionSelect').value='all'; setScope('target'); showToast('Filtros limpos.'); }
+    function render() { populateCourseSelect(); populateUfSelect(); document.querySelectorAll('[data-scope]').forEach(btn=>btn.classList.toggle('active',btn.dataset.scope===state.scope)); const item=selectedMeta(); $('selectionStatus').textContent=item ? `${item.name} selecionado` : 'Nenhum curso selecionado'; renderStats(); renderCourseGrid(); renderDetail(); renderMissionCompare(); renderTable(); }
+    function reset() { state.course='all'; state.scope='target'; state.search=''; state.uf='all'; state.type='all'; state.position='all'; state.regionOnly=true; $('searchInput').value=''; $('typeSelect').value='all'; $('positionSelect').value='all'; setScope('target'); showToast('Filtros limpos.'); }
     function parseCsv(text) {
       const lines=[]; let row=[], field='', quoted=false;
       for(let i=0;i<text.length;i++){ const ch=text[i], next=text[i+1]; if(ch==='"' && quoted && next==='"'){field+='"';i++;continue;} if(ch==='"'){quoted=!quoted;continue;} if(ch===';' && !quoted){row.push(field);field='';continue;} if((ch==='\n'||ch==='\r')&&!quoted){if(ch==='\r'&&next==='\n')i++;row.push(field);field='';if(row.some(Boolean))lines.push(row);row=[];continue;} field+=ch; } if(field||row.length){row.push(field);if(row.some(Boolean))lines.push(row);} return lines;
@@ -345,15 +397,19 @@
         showToast('Não foi possível carregar dados/. Publique também a pasta dados/.');
       }
     }
-    $('courseSelect').addEventListener('change',e=>{state.course=e.target.value; state.uf='all'; render();});
+    $('selectCourseBtn').addEventListener('click',()=>{ $('courseStart').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>$('courseSelect').focus(),280); });
+    $('startCourseBtn').addEventListener('click',()=>{ if(state.course==='all'){ showToast('Selecione um curso antes de começar.'); $('courseSelect').focus(); return; } $('missionSection').scrollIntoView({behavior:'smooth',block:'start'}); });
+    $('courseSelect').addEventListener('change',e=>{state.course=e.target.value; state.scope='all'; state.regionOnly=true; state.uf=targetRow(state.course)?.u || 'TO'; render();});
     $('searchInput').addEventListener('input',e=>{state.search=e.target.value; renderTable();});
     $('ufSelect').addEventListener('change',e=>{state.uf=e.target.value; renderTable();});
     $('typeSelect').addEventListener('change',e=>{state.type=e.target.value; renderTable();});
     $('positionSelect').addEventListener('change',e=>{state.position=e.target.value; renderTable();});
     document.querySelectorAll('[data-scope]').forEach(btn=>btn.addEventListener('click',()=>setScope(btn.dataset.scope)));
+    $('regionOnlyBtn').addEventListener('click',()=>{state.regionOnly=true; state.uf=targetRow(state.course)?.u || 'TO'; render();});
+    $('allBrazilBtn').addEventListener('click',()=>{state.regionOnly=false; state.uf='all'; render();});
     $('resetBtn').addEventListener('click',reset); $('printBtn').addEventListener('click',()=>window.print());
     $('downloadBtn').addEventListener('click',()=>{ const item=selectedMeta(); if(!item||!rowsFor(item.id).length)return showToast('Selecione um curso com dados.'); const rows=filteredRows(); const header=['Universidade','Estado','Pública ou Privada','Posição','Nota mercado','Nota ensino','Nota doutorado/mestrado','Nota concluintes','Nota dedicação','Nota docentes','Nota OAB']; const lines=[header,...rows.map(r=>[r.i,r.u,r.t,r.p,r.m?.n,r.e?.n,r.d?.n,r.c?.n,r.q?.n,r.a?.n,r.o?.n].map(v=>`"${String(v||'').replaceAll('"','""')}"`))]; const blob=new Blob([lines.map(line=>line.join(';')).join('\n')],{type:'text/csv;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`recorte-${item.id}.csv`; a.click(); URL.revokeObjectURL(a.href); });
-    $('fileInput').addEventListener('change',async e=>{ for(const file of e.target.files){ const id=fileCourseId(file.name); if(!id){showToast(`Não identifiquei o curso em ${file.name}.`);continue;} const rows=rowsFromCsv(await file.text()); if(!rows.length){showToast(`Não foi possível ler ${file.name}.`);continue;} data[id]=rows; const item=meta.find(x=>x.id===id); if(item)item.available=true; state.course=id; state.scope='target'; showToast(`${item?.name||id}: ${rows.length} instituições importadas.`); } e.target.value=''; render(); });
+    $('fileInput').addEventListener('change',async e=>{ for(const file of e.target.files){ const id=fileCourseId(file.name); if(!id){showToast(`Não identifiquei o curso em ${file.name}.`);continue;} const rows=rowsFromCsv(await file.text()); if(!rows.length){showToast(`Não foi possível ler ${file.name}.`);continue;} data[id]=rows; const item=meta.find(x=>x.id===id); if(item)item.available=true; state.course=id; state.scope='all'; state.regionOnly=true; state.uf=targetRow(id)?.u || 'TO'; showToast(`${item?.name||id}: ${rows.length} instituições importadas.`); } e.target.value=''; render(); });
     loadData();
   </script>
 </body>
