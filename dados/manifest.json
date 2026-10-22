@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "generated": "2026-10-22",
+  "target": "Centro Universitário Católica de Quixadá",
+  "meta": [
+    {
+      "id": "direito",
+      "name": "Direito",
+      "rufName": "Direito",
+      "file": "direito.csv",
+      "available": true,
+      "note": "Inclui o indicador adicional da OAB."
+    },
+    {
+      "id": "enfermagem",
+      "name": "Enfermagem",
+      "rufName": "Enfermagem",
+      "file": "enfermagem.csv",
+      "available": true,
+      "note": ""
+    },
+    {
+      "id": "biomedicina",
+      "name": "Biomedicina",
+      "rufName": "Biomedicina",
+      "file": "biomedicina.csv",
+      "available": true,
+      "note": ""
+    },
+    {
+      "id": "medicina-veterinaria",
+      "name": "Medicina Veterinária",
+      "rufName": "Medicina veterinária",
+      "file": "medicina-veterinaria.csv",
+      "available": true,
+      "note": ""
+    },
+    {
+      "id": "administracao",
+      "name": "Administração",
+      "rufName": "Administração de empresas",
+      "file": "administracao-de-empresas.csv",
+      "available": false,
+      "note": "O RUF usa o nome “Administração de empresas”."
+    },
+    {
+      "id": "ciencias-contabeis",
+      "name": "Ciências Contábeis",
+      "rufName": "Ciências Contábeis",
+      "file": "ciencias-contabeis.csv",
+      "available": true,
+      "note": ""
+    },
+    {
+      "id": "farmacia",
+      "name": "Farmácia",
+      "rufName": "Farmácia",
+      "file": "farmacia.csv",
+      "available": true,
+      "note": ""
+    },
+    {
+      "id": "psicologia",
+      "name": "Psicologia",
+      "rufName": "Psicologia",
+      "file": "psicologia.csv",
+      "available": true,
+      "note": ""
+    },
+    {
+      "id": "arquitetura-e-urbanismo",
+      "name": "Arquitetura e Urbanismo",
+      "rufName": "Arquitetura e Urbanismo",
+      "file": "arquitetura-e-urbanismo.csv",
+      "available": true,
+      "note": ""
+    },
+    {
+      "id": "zootecnia",
+      "name": "Zootecnia",
+      "rufName": "Zootecnia",
+      "file": "zootecnia.csv",
+      "available": false,
+      "note": ""
+    },
+    {
+      "id": "agronomia",
+      "name": "Agronomia",
+      "rufName": "Agronomia",
+      "file": "agronomia.csv",
+      "available": false,
+      "note": ""
+    },
+    {
+      "id": "engenharia-civil",
+      "name": "Engenharia Civil",
+      "rufName": "Engenharia Civil",
+      "file": "engenharia-civil.csv",
+      "available": false,
+      "note": ""
+    },
+    {
+      "id": "engenharia-de-software",
+      "name": "Engenharia de Software",
+      "rufName": "Computação",
+      "file": "computacao.csv",
+      "available": false,
+      "note": "O RUF 2026 lista “Computação”, não “Engenharia de Software”, como carreira avaliada."
+    },
+    {
+      "id": "terapia-ocupacional",
+      "name": "Terapia Ocupacional",
+      "rufName": null,
+      "file": null,
+      "available": false,
+      "note": "Não aparece entre as 42 carreiras avaliadas no RUF 2026."
+    },
+    {
+      "id": "inteligencia-artificial",
+      "name": "Inteligência Artificial",
+      "rufName": null,
+      "file": null,
+      "available": false,
+      "note": "Não aparece como carreira independente entre as 42 carreiras avaliadas no RUF 2026."
+    }
+  ]
+}
