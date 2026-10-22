@@ -20,7 +20,7 @@ Para atualizar um curso já existente, substitua o CSV correspondente dentro de 
 
 Os nomes das instituições comparadas são identificados pelos nomes oficiais presentes nos arquivos:
 
-- Unicatólica: `Centro Universitário Católica de Quixadá`
+- Unicatólica: `Centro Universitário Católica do Tocantins`
 - FICR: `Faculdade Católica Imaculada Conceição do Recife`
 - Unileste: `Centro Universitário Católica do Leste de Minas Gerais`
 - UCB: `Universidade Católica de Brasília`

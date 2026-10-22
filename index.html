@@ -211,14 +211,14 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const INITIAL = { target:'Centro Universitário Católica de Quixadá' };
-    const TARGET = INITIAL.target;
+    const INITIAL = { target:'Centro Universitário Católica do Tocantins' };
+    let TARGET = INITIAL.target;
     const state = { course: 'all', scope: 'target', search: '', uf: 'all', type: 'all', position: 'all', sort: 'position' };
     let data = {};
     let meta = [];
     const labels = { m:'Mercado', e:'Qualidade de ensino', d:'Doutorado / mestrado', c:'Concluintes', q:'Dedicação docente', a:'Avaliação docente', o:'OAB' };
     const MISSION_UNITS = [
-      { id:'unicatolica', short:'Unicatólica', label:'Centro Universitário Católica de Quixadá', aliases:['Centro Universitário Católica de Quixadá'] },
+      { id:'unicatolica', short:'Unicatólica', label:'Centro Universitário Católica do Tocantins', aliases:['Centro Universitário Católica do Tocantins'] },
       { id:'ficr', short:'FICR', label:'Faculdade Católica Imaculada Conceição do Recife', aliases:['Faculdade Católica Imaculada Conceição do Recife'] },
       { id:'unileste', short:'Unileste', label:'Centro Universitário Católica do Leste de Minas Gerais', aliases:['Centro Universitário Católica do Leste de Minas Gerais'] },
       { id:'ucb', short:'UCB', label:'Universidade Católica de Brasília', aliases:['Universidade Católica de Brasília'] },
@@ -226,7 +226,7 @@
     const keys = ['m','e','d','c','q','a','o'];
     const $ = id => document.getElementById(id);
     const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-    const isTarget = name => normalize(name) === normalize(TARGET) || normalize(name).includes('unicatolica') || normalize(name).includes('catolica de quixada');
+    const isTarget = name => normalize(name) === normalize(TARGET);
     const missionRow = (courseId, unit) => rowsFor(courseId).find(row => unit.aliases.some(alias => normalize(row.i) === normalize(alias)));
     const numeric = value => { const match = String(value ?? '').replace(',','.').match(/\d+(?:\.\d+)?/); return match ? Number(match[0]) : null; };
     const rankNumber = value => { const match = String(value ?? '').replace(',','.').match(/\d+/); return match ? Number(match[0]) : Infinity; };
@@ -329,6 +329,7 @@
         const response=await fetch('dados/manifest.json',{cache:'no-cache'});
         if (!response.ok) throw new Error(`manifest ${response.status}`);
         const manifest=await response.json();
+        TARGET=manifest.target || INITIAL.target;
         meta=Array.isArray(manifest.meta) ? manifest.meta.map(item=>({...item})) : [];
         data={};
         await Promise.all(meta.filter(item=>item.file).map(async item=>{
