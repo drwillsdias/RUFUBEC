@@ -1,6 +1,6 @@
 # Painel RUF 2026 · Unicatólica
 
-Este repositório contém um painel estático para leitura gerencial do RUF 2026, com comparação entre a Unicatólica, FICR, Unileste e UCB.
+Este repositório contém um painel estático para leitura gerencial do RUF 2026, com comparação entre o Unicatólica, FICR, Unileste e UCB.
 
 ## Estrutura
 

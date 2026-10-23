@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102a43">
-  <meta name="description" content="Painel de leitura do RUF 2026 para os cursos da Unicatólica.">
+  <meta name="description" content="Painel de leitura do RUF 2026 para os cursos do Unicatólica.">
   <title>Painel RUF 2026 · Unicatólica</title>
   <style>
     :root {
@@ -37,8 +37,8 @@
     .hero { order:0; }
     .course-start { order:1; }
     .toolbar { order:2; }
-    #missionSection { order:3; }
-    #compareSection { order:4; }
+    #compareSection { order:3; }
+    #missionSection { order:4; }
     #overviewSection { order:5; }
     #detailSection { order:6; }
     #dataSection { order:7; }
@@ -194,13 +194,13 @@
 
     <main>
       <section class="hero">
-        <div class="hero-main"><div class="eyebrow">Ranking Universitário Folha · 2026</div><h1>Uma leitura mais clara da posição de cada curso.</h1><p>Comece pela comparação entre as unidades de missão da UBEC. Depois, explore a posição regional e os detalhes de todos os cursos.</p><div class="hero-actions"><button class="start-button" id="selectCourseBtn">Selecione um curso antes de começar <span aria-hidden="true">↓</span></button><span class="selection-status" id="selectionStatus">Nenhum curso selecionado</span></div></div>
-        <aside class="hero-note"><div><div class="big" id="loadedCount">8/15</div><p>cursos da Unicatólica com planilha anexada nesta versão.</p></div><a class="source-link" href="https://ruf.folha.uol.com.br/2026/ranking-de-cursos/direito/" target="_blank" rel="noopener">Abrir fonte oficial do RUF 2026 ↗</a></aside>
+        <div class="hero-main"><div class="eyebrow">Ranking Universitário Folha · 2026</div><h1>Uma leitura mais clara da posição de cada curso.</h1><p>Comece pela comparação regional do curso. Depois, compare as unidades de missão da UBEC e consulte os detalhes de todos os cursos.</p><div class="hero-actions"><button class="start-button" id="selectCourseBtn">Selecione um curso antes de começar <span aria-hidden="true">↓</span></button><span class="selection-status" id="selectionStatus">Nenhum curso selecionado</span></div></div>
+        <aside class="hero-note"><div><div class="big" id="loadedCount">8/15</div><p>cursos do Unicatólica com planilha anexada nesta versão.</p></div><a class="source-link" href="https://ruf.folha.uol.com.br/2026/ranking-de-cursos/direito/" target="_blank" rel="noopener">Abrir fonte oficial do RUF 2026 ↗</a></aside>
       </section>
 
       <section class="course-start" id="courseStart">
-        <div class="course-start-copy"><div class="eyebrow" style="color:var(--teal)">Primeiro passo</div><h2>Selecione um curso antes de começar</h2><p>O comparativo do grupo e os gráficos abaixo só são preenchidos depois que uma carreira é escolhida.</p></div>
-        <div class="course-select-wrap"><div class="field"><label for="courseSelect">Curso da análise</label><select id="courseSelect"></select></div><button class="button primary" id="startCourseBtn">Abrir comparativo →</button></div>
+        <div class="course-start-copy"><div class="eyebrow" style="color:var(--teal)">Primeiro passo</div><h2>Selecione um curso antes de começar</h2><p>O comparativo regional e a comparação entre unidades de missão só são preenchidos depois que uma carreira é escolhida.</p></div>
+        <div class="course-select-wrap"><div class="field"><label for="courseSelect">Curso da análise</label><select id="courseSelect"></select></div><button class="button primary" id="startCourseBtn">Abrir comparação regional →</button></div>
       </section>
 
       <section class="toolbar" aria-label="Filtros do painel">
@@ -225,14 +225,14 @@
       </section>
 
       <section class="section" id="missionSection">
-        <div class="section-head"><div><h2>Unidades de missão lado a lado</h2><p id="missionSubtitle">Selecione um curso para comparar Unicatólica, FICR, Unileste e UCB.</p></div><div class="section-tools"><span class="pill">Comparação principal da reitoria</span></div></div>
+        <div class="section-head"><div><h2>Unidades de missão lado a lado</h2><p id="missionSubtitle">Selecione um curso para comparar Unicatólica, FICR, Unileste e UCB.</p></div><div class="section-tools"><span class="pill">Comparação entre unidades de missão</span></div></div>
         <div class="chart-grid"><article class="chart-card"><h3>Posição geral no RUF</h3><p>Quanto maior a barra, melhor a posição. A colocação publicada aparece à direita.</p><div id="rankChart"></div></article><article class="chart-card"><h3>Notas de mercado e ensino</h3><p>Barras normalizadas dentro de cada indicador; os valores originais aparecem à direita.</p><div id="indicatorChart"></div></article></div>
         <div class="mission-summary" id="missionSummary"></div>
         <div class="panel compare-card"><div class="compare-top"><strong id="missionResultCount">Nenhum curso selecionado</strong><span class="muted" id="missionHint">“Não localizado” não significa posição zero.</span></div><div class="table-wrap"><table class="mission-table"><thead><tr><th>Unidade</th><th>Posição geral</th><th>Mercado</th><th>Ensino</th><th>Doutorado / mestrado</th><th>Concluintes</th><th>Dedicação</th><th>Docentes</th><th>OAB</th></tr></thead><tbody id="missionBody"></tbody></table></div></div>
       </section>
       <section class="section" id="compareSection">
-        <div class="section-head"><div><h2>Comparativo regional</h2><p id="compareSubtitle">Selecione um curso para comparar as instituições do estado da Unicatólica.</p></div><div class="section-tools"><div class="segmented"><button class="active" id="regionOnlyBtn">Estado da Unicatólica</button><button id="allBrazilBtn">Brasil inteiro</button></div><button class="button" id="downloadBtn">Baixar recorte CSV</button></div></div>
-        <div class="panel compare-card"><div class="compare-top"><strong id="resultCount">0 instituições</strong><span class="muted" id="resultHint">A Unicatólica fica destacada em laranja.</span></div><div class="table-wrap"><table><thead><tr><th>Instituição</th><th>UF</th><th>Natureza</th><th>Posição</th><th>Mercado</th><th>Ensino</th><th>Doutorado / mestrado</th><th>Concluintes</th><th>Dedicação</th><th>Docentes</th><th>OAB</th></tr></thead><tbody id="tableBody"></tbody></table></div></div>
+        <div class="section-head"><div><h2>Comparativo regional</h2><p id="compareSubtitle">Selecione um curso para comparar as instituições do estado do Tocantins.</p></div><div class="section-tools"><div class="segmented"><button class="active" id="regionOnlyBtn">Estado do Tocantins</button><button id="allBrazilBtn">Brasil inteiro</button></div><button class="button" id="downloadBtn">Baixar recorte CSV</button></div></div>
+        <div class="panel compare-card"><div class="compare-top"><strong id="resultCount">0 instituições</strong><span class="muted" id="resultHint">O Unicatólica fica destacado em laranja.</span></div><div class="table-wrap"><table><thead><tr><th>Instituição</th><th>UF</th><th>Natureza</th><th>Posição</th><th>Mercado</th><th>Ensino</th><th>Doutorado / mestrado</th><th>Concluintes</th><th>Dedicação</th><th>Docentes</th><th>OAB</th></tr></thead><tbody id="tableBody"></tbody></table></div></div>
       </section>
 
       <section class="section" id="dataSection">
@@ -240,7 +240,7 @@
         <div class="info-grid">
           <article class="info-card"><h3>Como ler a posição</h3><p>A posição é a colocação publicada na carreira. Faixas como “251-300” são mantidas como faixa e não são convertidas em um número inventado.</p></article>
           <article class="info-card"><h3>O que o RUF avalia</h3><p>O RUF 2026 informa que o ranking de cursos combina os aspectos ensino e mercado. Direito tem também a nota da OAB. O Enade compõe parte do indicador de ensino.</p></article>
-          <article class="info-card"><h3>Unidades comparadas</h3><p>O comparativo principal usa os nomes oficiais da Unicatólica, FICR, Unileste e UCB listados pela <a href="https://www.ubec.edu.br/unidades-de-missao/" target="_blank" rel="noopener">UBEC</a>. Não há média artificial entre os indicadores.</p></article>
+          <article class="info-card"><h3>Unidades comparadas</h3><p>O comparativo principal usa os nomes oficiais do Unicatólica, FICR, Unileste e UCB listados pela <a href="https://www.ubec.edu.br/unidades-de-missao/" target="_blank" rel="noopener">UBEC</a>. Não há média artificial entre os indicadores.</p></article>
         </div>
         <div class="import" style="margin-top:13px"><p><strong>Adicionar CSV:</strong> escolha um arquivo no mesmo formato das planilhas originais. O curso é identificado pelo nome do arquivo; a importação vale apenas para esta sessão do navegador.</p><label class="button primary" for="fileInput">Importar CSV</label><input id="fileInput" type="file" accept=".csv,text/csv" multiple></div>
       </section>
@@ -298,7 +298,7 @@
       const present=targetRows.length;
       const cards=[
         ['Cursos com CSV', `${loaded.length}/${meta.length}`, 'arquivos incorporados nesta versão'],
-        ['Cursos localizados', `${present}`, 'com linha da Unicatólica na base'],
+        ['Cursos localizados', `${present}`, 'com linha do Unicatólica na base'],
         ['Melhor posição', best ? `${best}º` : '—', best ? 'entre os cursos localizados' : 'sem posição disponível'],
         ['Posição média', avg ? `${avg}º` : '—', 'média simples das posições localizadas'],
       ];
@@ -314,13 +314,13 @@
         const indicator=row ? (row.e.n ? `Ensino ${fmt(row.e.n)}` : row.m.n ? `Mercado ${fmt(row.m.n)}` : 'Indicadores parciais') : (item.note || 'CSV ainda não incorporado');
         return `<article class="course-card ${loaded?'loaded':'pending'}" ${action} tabindex="${loaded?'0':'-1'}"><div><div class="course-title">${item.name}</div><div class="course-meta">${item.rufName ? `RUF: ${item.rufName}` : 'Fora da lista direta do RUF 2026'}</div></div><div class="rank">${row ? `${fmt(row.p)}<small>º posição</small>` : '—'}</div><div class="course-bottom"><span class="mini-note">${indicator}</span><span class="status ${statusClass}">${status}</span></div></article>`;
       }).join('');
-      document.querySelectorAll('[data-open-course]').forEach(card=>{ const go=()=>{ configureCourse(card.dataset.openCourse); $('courseSelect').value=state.course; populateUfSelect(); render(); $('missionSection').scrollIntoView({behavior:'smooth',block:'start'}); }; card.addEventListener('click',go); card.addEventListener('keydown',e=>{if(e.key==='Enter')go();}); });
+      document.querySelectorAll('[data-open-course]').forEach(card=>{ const go=()=>{ configureCourse(card.dataset.openCourse); $('courseSelect').value=state.course; populateUfSelect(); render(); $('compareSection').scrollIntoView({behavior:'smooth',block:'start'}); }; card.addEventListener('click',go); card.addEventListener('keydown',e=>{if(e.key==='Enter')go();}); });
     }
     function renderDetail() {
       const item=selectedMeta();
       if (!item) { $('detailTitle').textContent='Detalhe do curso'; $('detailSubtitle').textContent='Clique em um cartão carregado ao final do painel para abrir o retrato do curso.'; $('focusPanel').innerHTML='<h3>Selecione um curso</h3><p class="sub">A visão geral ao final do painel permite abrir qualquer uma das carreiras com CSV disponível.</p><div class="empty">Os cursos sem planilha permanecem sinalizados como pendentes.</div>'; $('meterList').innerHTML='<div class="empty">Selecione um curso carregado para exibir seus indicadores.</div>'; return; }
       const row=targetRow(item.id); $('detailTitle').textContent=item.name; $('detailSubtitle').textContent=row ? `${TARGET} · ${item.rufName || item.name}` : `${item.name} · ${item.note || 'A instituição não foi localizada no CSV disponível.'}`;
-      if (!row) { $('focusPanel').innerHTML=`<h3>Sem linha da Unicatólica nesta base</h3><p class="sub">O CSV de ${item.name} foi carregado, mas não contém uma linha com o nome “${TARGET}”. Isso não deve ser interpretado como posição zero.</p><div class="empty">Use o comparativo para consultar todas as instituições disponíveis.</div>`; $('meterList').innerHTML='<div class="empty">Sem indicadores da instituição para exibir.</div>'; return; }
+      if (!row) { $('focusPanel').innerHTML=`<h3>Sem linha do Unicatólica nesta base</h3><p class="sub">O CSV de ${item.name} foi carregado, mas não contém uma linha com o nome “${TARGET}”. Isso não deve ser interpretado como posição zero.</p><div class="empty">Use o comparativo para consultar todas as instituições disponíveis.</div>`; $('meterList').innerHTML='<div class="empty">Sem indicadores da instituição para exibir.</div>'; return; }
       const [status,statusClass]=statusFor(row.p);
       $('focusPanel').innerHTML=`<div class="eyebrow">${item.rufName || item.name}</div><h3 style="margin-top:12px">Posição geral</h3><div class="focus-rank"><strong>${fmt(row.p)}</strong><span>º lugar</span></div><div class="focus-name">${TARGET} · ${row.u} · ${row.t}</div><span class="status ${statusClass}" style="margin-top:18px">${status}</span>`;
       $('meterList').innerHTML=keys.filter(key=>row[key] && (row[key].n || row[key].r)).map(key=>{ const value=numeric(row[key].n); const max=key==='e'?70:key==='m'?30:key==='a'?40:key==='o'?35:8; const width=value===null?0:Math.max(4,Math.min(100,(value/max)*100)); return `<div class="meter-row"><span class="meter-name">${labels[key]}</span><span class="meter-rank">posição ${fmt(row[key].r)}</span><span class="meter-value">${fmt(row[key].n)}</span><span class="meter-track"><span class="meter-fill" style="width:${width}%"></span></span></div>`; }).join('') || '<div class="empty">Sem indicadores preenchidos.</div>';
@@ -364,7 +364,7 @@
       $('regionOnlyBtn').classList.toggle('active',state.regionOnly); $('allBrazilBtn').classList.toggle('active',!state.regionOnly);
       if (!item) { $('compareSubtitle').textContent='Selecione um curso para abrir a tabela regional.'; $('resultCount').textContent='Aguardando curso'; $('tableBody').innerHTML='<tr><td colspan="11" class="empty">Selecione um curso carregado.</td></tr>'; return; }
       if (!rowsFor(item.id).length) { $('compareSubtitle').textContent=`${item.name} ainda não tem CSV incorporado.`; $('resultCount').textContent='Dados pendentes'; $('tableBody').innerHTML=`<tr><td colspan="11" class="empty">Adicione o arquivo ${item.file || 'CSV correspondente'} usando o botão de importação.</td></tr>`; return; }
-      const rows=filteredRows(); const regionLabel=state.regionOnly ? `instituições de ${state.uf==='all'?(targetRow(item.id)?.u || 'TO'):state.uf}` : 'instituições de todo o Brasil'; $('compareSubtitle').textContent=`${item.name} · ${regionLabel} · ${state.scope==='target'?'visão filtrada para a Unicatólica':'todas as instituições disponíveis'}`; $('resultCount').textContent=`${rows.length} instituição${rows.length===1?'':'ões'}`;
+      const rows=filteredRows(); const regionLabel=state.regionOnly ? `instituições de ${state.uf==='all'?(targetRow(item.id)?.u || 'TO'):state.uf}` : 'instituições de todo o Brasil'; $('compareSubtitle').textContent=`${item.name} · ${regionLabel} · ${state.scope==='target'?'visão filtrada para o Unicatólica':'todas as instituições disponíveis'}`; $('resultCount').textContent=`${rows.length} instituição${rows.length===1?'':'ões'}`;
       $('tableBody').innerHTML=rows.map(row=>`<tr class="${isTarget(row.i)?'target':''}"><td class="inst">${isTarget(row.i)?'<span class="pill target">UNICATÓLICA</span> ':''}${row.i}</td><td>${row.u||'—'}</td><td>${row.t||'—'}</td><td class="num">${fmt(row.p)}</td><td>${cell(row.m)}</td><td>${cell(row.e)}</td><td>${cell(row.d)}</td><td>${cell(row.c)}</td><td>${cell(row.q)}</td><td>${cell(row.a)}</td><td>${row.o?cell(row.o):'<span class="muted">—</span>'}</td></tr>`).join('') || '<tr><td colspan="11" class="empty">Nenhuma instituição corresponde aos filtros atuais.</td></tr>';
     }
     function render() { populateCourseSelect(); populateUfSelect(); document.querySelectorAll('[data-scope]').forEach(btn=>btn.classList.toggle('active',btn.dataset.scope===state.scope)); const item=selectedMeta(); $('selectionStatus').textContent=item ? `${item.name} selecionado` : 'Nenhum curso selecionado'; renderStats(); renderCourseGrid(); renderDetail(); renderMissionCompare(); renderTable(); }
@@ -399,7 +399,7 @@
       }
     }
     $('selectCourseBtn').addEventListener('click',()=>{ $('courseStart').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>$('courseSelect').focus(),280); });
-    $('startCourseBtn').addEventListener('click',()=>{ if(state.course==='all'){ showToast('Selecione um curso antes de começar.'); $('courseSelect').focus(); return; } $('missionSection').scrollIntoView({behavior:'smooth',block:'start'}); });
+    $('startCourseBtn').addEventListener('click',()=>{ if(state.course==='all'){ showToast('Selecione um curso antes de começar.'); $('courseSelect').focus(); return; } $('compareSection').scrollIntoView({behavior:'smooth',block:'start'}); });
     $('courseSelect').addEventListener('change',e=>{configureCourse(e.target.value); render();});
     $('searchInput').addEventListener('input',e=>{state.search=e.target.value; renderTable();});
     $('ufSelect').addEventListener('change',e=>{state.uf=e.target.value; renderTable();});
